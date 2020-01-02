@@ -3,6 +3,8 @@
 locals {
   nat_gateway_count = var.single_nat_gateway ? 1 : length(var.azs)
 
+  vpc_id = aws_vpc.this.vpc_id.id
+   
   vpce_tags = merge(
     var.tags,
     var.vpc_endpoint_tags,
