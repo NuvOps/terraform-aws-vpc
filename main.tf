@@ -710,6 +710,12 @@ resource "aws_network_acl_rule" "elasticache_outbound" {
 # NAT Gateway
 ##############
 
+locals {
+  nat_gateway_ips = split(
+    ",",
+    join(",", aws_eip.nat.*.id),
+  )
+}
 
 resource "aws_eip" "nat" {
   count = local.nat_gateway_count
