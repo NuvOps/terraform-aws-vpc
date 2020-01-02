@@ -1,8 +1,7 @@
   #condition ? true_val : false_val
   #If condition is true then the result is true_val. If condition is false then the result is false_val.
-
+locals {
   nat_gateway_count = var.single_nat_gateway ? 1 : length(var.azs)
-
 
   # Use `local.vpc_id` to give a hint to Terraform that subnets should be deleted before secondary CIDR blocks can be free!
   vpc_id = element(
