@@ -80,6 +80,12 @@ resource "aws_internet_gateway" "this" {
   )
 }
 
+resource "aws_egress_only_internet_gateway" "this" {
+  count = var.enable_ipv6 ? 1 : 0
+
+  vpc_id = local.vpc_id
+}
+
 
 ################
 # Publiс routes
