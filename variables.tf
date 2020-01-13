@@ -154,6 +154,11 @@ variable "database_subnets" {
   default     = []
 }
 
+variable "redshift_subnets" {
+  description = "A list of redshift subnets"
+  type        = list(string)
+  default     = []
+}
 
 variable "elasticache_subnets" {
   description = "A list of elasticache subnets"
