@@ -49,16 +49,6 @@ output "vpc_main_route_table_id" {
   value       = concat(aws_vpc.this.*.main_route_table_id, [""])[0]
 }
 
-output "vpc_ipv6_association_id" {
-  description = "The association ID for the IPv6 CIDR block"
-  value       = concat(aws_vpc.this.*.ipv6_association_id, [""])[0]
-}
-
-output "vpc_ipv6_cidr_block" {
-  description = "The IPv6 CIDR block"
-  value       = concat(aws_vpc.this.*.ipv6_cidr_block, [""])[0]
-}
-
 output "private_subnets" {
   description = "List of IDs of private subnets"
   value       = aws_subnet.private.*.id
@@ -74,10 +64,6 @@ output "private_subnets_cidr_blocks" {
   value       = aws_subnet.private.*.cidr_block
 }
 
-output "private_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of private subnets in an IPv6 enabled VPC"
-  value       = aws_subnet.private.*.ipv6_cidr_block
-}
 
 output "public_subnets" {
   description = "List of IDs of public subnets"
@@ -94,10 +80,6 @@ output "public_subnets_cidr_blocks" {
   value       = aws_subnet.public.*.cidr_block
 }
 
-output "public_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of public subnets in an IPv6 enabled VPC"
-  value       = aws_subnet.public.*.ipv6_cidr_block
-}
 
 output "database_subnets" {
   description = "List of IDs of database subnets"
@@ -316,40 +298,40 @@ output "elasticache_network_acl_id" {
 }
 
 # VPC Endpoints
-output "vpc_endpoint_s3_id" {
-  description = "The ID of VPC endpoint for S3"
-  value       = concat(aws_vpc_endpoint.s3.*.id, [""])[0]
-}
+# output "vpc_endpoint_s3_id" {
+#   description = "The ID of VPC endpoint for S3"
+#   value       = concat(aws_vpc_endpoint.s3.*.id, [""])[0]
+# }
 
-output "vpc_endpoint_s3_pl_id" {
-  description = "The prefix list for the S3 VPC endpoint."
-  value       = concat(aws_vpc_endpoint.s3.*.prefix_list_id, [""])[0]
-}
+# output "vpc_endpoint_s3_pl_id" {
+#   description = "The prefix list for the S3 VPC endpoint."
+#   value       = concat(aws_vpc_endpoint.s3.*.prefix_list_id, [""])[0]
+# }
 
-output "vpc_endpoint_dynamodb_id" {
-  description = "The ID of VPC endpoint for DynamoDB"
-  value       = concat(aws_vpc_endpoint.dynamodb.*.id, [""])[0]
-}
+# output "vpc_endpoint_dynamodb_id" {
+#   description = "The ID of VPC endpoint for DynamoDB"
+#   value       = concat(aws_vpc_endpoint.dynamodb.*.id, [""])[0]
+# }
 
-output "vpc_endpoint_dynamodb_pl_id" {
-  description = "The prefix list for the DynamoDB VPC endpoint."
-  value       = concat(aws_vpc_endpoint.dynamodb.*.prefix_list_id, [""])[0]
-}
+# output "vpc_endpoint_dynamodb_pl_id" {
+#   description = "The prefix list for the DynamoDB VPC endpoint."
+#   value       = concat(aws_vpc_endpoint.dynamodb.*.prefix_list_id, [""])[0]
+# }
 
-output "vpc_endpoint_ec2_id" {
-  description = "The ID of VPC endpoint for EC2"
-  value       = concat(aws_vpc_endpoint.ec2.*.id, [""])[0]
-}
+# output "vpc_endpoint_ec2_id" {
+#   description = "The ID of VPC endpoint for EC2"
+#   value       = concat(aws_vpc_endpoint.ec2.*.id, [""])[0]
+# }
 
-output "vpc_endpoint_ec2_network_interface_ids" {
-  description = "One or more network interfaces for the VPC Endpoint for EC2"
-  value       = flatten(aws_vpc_endpoint.ec2.*.network_interface_ids)
-}
+# output "vpc_endpoint_ec2_network_interface_ids" {
+#   description = "One or more network interfaces for the VPC Endpoint for EC2"
+#   value       = flatten(aws_vpc_endpoint.ec2.*.network_interface_ids)
+# }
 
-output "vpc_endpoint_ec2_dns_entry" {
-  description = "The DNS entries for the VPC Endpoint for EC2."
-  value       = flatten(aws_vpc_endpoint.ec2.*.dns_entry)
-}
+# output "vpc_endpoint_ec2_dns_entry" {
+#   description = "The DNS entries for the VPC Endpoint for EC2."
+#   value       = flatten(aws_vpc_endpoint.ec2.*.dns_entry)
+# }
 
 # Static values (arguments)
 output "azs" {

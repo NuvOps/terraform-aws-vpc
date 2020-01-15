@@ -7,7 +7,7 @@ variable "name" {
 variable "cidr" {
   description = "The CIDR block for the VPC."
   type        = string
-  default     = "10.0.0.0/16"
+  default     = null
 }
 
 variable "enable_ipv6" {
@@ -84,7 +84,7 @@ variable "intra_subnet_assign_ipv6_address_on_creation" {
 }
 
 variable "instance_tenancy" {
-  description = "A tenancy option for instances launched into the VPC"
+  description = "A tenancy option for instances launched into the VPC. Options: default, dedicated, host"
   type        = string
   default     = "default"
 }
