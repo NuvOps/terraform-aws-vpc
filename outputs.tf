@@ -96,10 +96,6 @@ output "database_subnets_cidr_blocks" {
   value       = aws_subnet.database.*.cidr_block
 }
 
-output "database_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of database subnets in an IPv6 enabled VPC"
-  value       = aws_subnet.database.*.ipv6_cidr_block
-}
 
 output "database_subnet_group" {
   description = "ID of database subnet group"
@@ -121,11 +117,6 @@ output "elasticache_subnets_cidr_blocks" {
   value       = aws_subnet.elasticache.*.cidr_block
 }
 
-output "elasticache_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of elasticache subnets in an IPv6 enabled VPC"
-  value       = aws_subnet.elasticache.*.ipv6_cidr_block
-}
-
 output "intra_subnets" {
   description = "List of IDs of intra subnets"
   value       = aws_subnet.intra.*.id
@@ -141,10 +132,6 @@ output "intra_subnets_cidr_blocks" {
   value       = aws_subnet.intra.*.cidr_block
 }
 
-output "intra_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of intra subnets in an IPv6 enabled VPC"
-  value       = aws_subnet.intra.*.ipv6_cidr_block
-}
 
 output "elasticache_subnet_group" {
   description = "ID of elasticache subnet group"
@@ -199,11 +186,6 @@ output "natgw_ids" {
 output "igw_id" {
   description = "The ID of the Internet Gateway"
   value       = concat(aws_internet_gateway.this.*.id, [""])[0]
-}
-
-output "egress_only_internet_gateway_id" {
-  description = "The ID of the egress only Internet Gateway"
-  value       = concat(aws_egress_only_internet_gateway.this.*.id, [""])[0]
 }
 
 output "cgw_ids" {
