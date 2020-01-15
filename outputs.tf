@@ -124,31 +124,6 @@ output "database_subnet_group" {
   value       = concat(aws_db_subnet_group.database.*.id, [""])[0]
 }
 
-output "redshift_subnets" {
-  description = "List of IDs of redshift subnets"
-  value       = aws_subnet.redshift.*.id
-}
-
-output "redshift_subnet_arns" {
-  description = "List of ARNs of redshift subnets"
-  value       = aws_subnet.redshift.*.arn
-}
-
-output "redshift_subnets_cidr_blocks" {
-  description = "List of cidr_blocks of redshift subnets"
-  value       = aws_subnet.redshift.*.cidr_block
-}
-
-output "redshift_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of redshift subnets in an IPv6 enabled VPC"
-  value       = aws_subnet.redshift.*.ipv6_cidr_block
-}
-
-output "redshift_subnet_group" {
-  description = "ID of redshift subnet group"
-  value       = concat(aws_redshift_subnet_group.redshift.*.id, [""])[0]
-}
-
 output "elasticache_subnets" {
   description = "List of IDs of elasticache subnets"
   value       = aws_subnet.elasticache.*.id
@@ -212,11 +187,6 @@ output "private_route_table_ids" {
 output "database_route_table_ids" {
   description = "List of IDs of database route tables"
   value       = length(aws_route_table.database.*.id) > 0 ? aws_route_table.database.*.id : aws_route_table.private.*.id
-}
-
-output "redshift_route_table_ids" {
-  description = "List of IDs of redshift route tables"
-  value       = length(aws_route_table.redshift.*.id) > 0 ? aws_route_table.redshift.*.id : aws_route_table.private.*.id
 }
 
 output "elasticache_route_table_ids" {
@@ -339,10 +309,6 @@ output "database_network_acl_id" {
   value       = concat(aws_network_acl.database.*.id, [""])[0]
 }
 
-output "redshift_network_acl_id" {
-  description = "ID of the redshift network ACL"
-  value       = concat(aws_network_acl.redshift.*.id, [""])[0]
-}
 
 output "elasticache_network_acl_id" {
   description = "ID of the elasticache network ACL"

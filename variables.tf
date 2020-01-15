@@ -34,12 +34,6 @@ variable "database_subnet_ipv6_prefixes" {
   default     = []
 }
 
-variable "redshift_subnet_ipv6_prefixes" {
-  description = "Assigns IPv6 redshift subnet id based on the Amazon provided /56 prefix base 10 integer (0-256). Must be of equal length to the corresponding IPv4 subnet list"
-  type        = list
-  default     = []
-}
-
 variable "elasticache_subnet_ipv6_prefixes" {
   description = "Assigns IPv6 elasticache subnet id based on the Amazon provided /56 prefix base 10 integer (0-256). Must be of equal length to the corresponding IPv4 subnet list"
   type        = list
@@ -76,11 +70,6 @@ variable "database_subnet_assign_ipv6_address_on_creation" {
   default     = null
 }
 
-variable "redshift_subnet_assign_ipv6_address_on_creation" {
-  description = "Assign IPv6 address on redshift subnet, must be disabled to change IPv6 CIDRs. This is the IPv6 equivalent of map_public_ip_on_launch"
-  type        = bool
-  default     = null
-}
 
 variable "elasticache_subnet_assign_ipv6_address_on_creation" {
   description = "Assign IPv6 address on elasticache subnet, must be disabled to change IPv6 CIDRs. This is the IPv6 equivalent of map_public_ip_on_launch"
@@ -124,12 +113,6 @@ variable "database_subnet_suffix" {
   default     = "db"
 }
 
-variable "redshift_subnet_suffix" {
-  description = "Suffix to append to redshift subnets name"
-  type        = string
-  default     = "redshift"
-}
-
 variable "elasticache_subnet_suffix" {
   description = "Suffix to append to elasticache subnets name"
   type        = string
@@ -154,11 +137,6 @@ variable "database_subnets" {
   default     = []
 }
 
-variable "redshift_subnets" {
-  description = "A list of redshift subnets"
-  type        = list(string)
-  default     = []
-}
 
 variable "elasticache_subnets" {
   description = "A list of elasticache subnets"
@@ -178,18 +156,6 @@ variable "create_database_subnet_route_table" {
   default     = false
 }
 
-variable "create_redshift_subnet_route_table" {
-  description = "Controls if separate route table for redshift should be created"
-  type        = bool
-  default     = false
-}
-
-variable "enable_public_redshift" {
-  description = "Controls if redshift should have public routing table"
-  type        = bool
-  default     = false
-}
-
 variable "create_elasticache_subnet_route_table" {
   description = "Controls if separate route table for elasticache should be created"
   type        = bool
@@ -204,12 +170,6 @@ variable "create_database_subnet_group" {
 
 variable "create_elasticache_subnet_group" {
   description = "Controls if elasticache subnet group should be created"
-  type        = bool
-  default     = true
-}
-
-variable "create_redshift_subnet_group" {
-  description = "Controls if redshift subnet group should be created"
   type        = bool
   default     = true
 }
@@ -380,11 +340,6 @@ variable "database_route_table_tags" {
   default     = {}
 }
 
-variable "redshift_route_table_tags" {
-  description = "Additional tags for the redshift route tables"
-  type        = map(string)
-  default     = {}
-}
 
 variable "elasticache_route_table_tags" {
   description = "Additional tags for the elasticache route tables"
@@ -406,18 +361,6 @@ variable "database_subnet_tags" {
 
 variable "database_subnet_group_tags" {
   description = "Additional tags for the database subnet group"
-  type        = map(string)
-  default     = {}
-}
-
-variable "redshift_subnet_tags" {
-  description = "Additional tags for the redshift subnets"
-  type        = map(string)
-  default     = {}
-}
-
-variable "redshift_subnet_group_tags" {
-  description = "Additional tags for the redshift subnet group"
   type        = map(string)
   default     = {}
 }
@@ -454,12 +397,6 @@ variable "intra_acl_tags" {
 
 variable "database_acl_tags" {
   description = "Additional tags for the database subnets network ACL"
-  type        = map(string)
-  default     = {}
-}
-
-variable "redshift_acl_tags" {
-  description = "Additional tags for the redshift subnets network ACL"
   type        = map(string)
   default     = {}
 }
@@ -616,12 +553,6 @@ variable "intra_dedicated_network_acl" {
 
 variable "database_dedicated_network_acl" {
   description = "Whether to use dedicated network ACL (not default) and custom rules for database subnets"
-  type        = bool
-  default     = false
-}
-
-variable "redshift_dedicated_network_acl" {
-  description = "Whether to use dedicated network ACL (not default) and custom rules for redshift subnets"
   type        = bool
   default     = false
 }
@@ -794,38 +725,6 @@ variable "database_inbound_acl_rules" {
 
 variable "database_outbound_acl_rules" {
   description = "Database subnets outbound network ACL rules"
-  type        = list(map(string))
-
-  default = [
-    {
-      rule_number = 100
-      rule_action = "allow"
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      cidr_block  = "0.0.0.0/0"
-    },
-  ]
-}
-
-variable "redshift_inbound_acl_rules" {
-  description = "Redshift subnets inbound network ACL rules"
-  type        = list(map(string))
-
-  default = [
-    {
-      rule_number = 100
-      rule_action = "allow"
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      cidr_block  = "0.0.0.0/0"
-    },
-  ]
-}
-
-variable "redshift_outbound_acl_rules" {
-  description = "Redshift subnets outbound network ACL rules"
   type        = list(map(string))
 
   default = [
